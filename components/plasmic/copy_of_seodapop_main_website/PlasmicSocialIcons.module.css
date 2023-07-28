@@ -1,0 +1,51 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  position: relative;
+  min-width: 0;
+  padding: 0px;
+}
+.root > :global(.__wab_flex-container) {
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-width: 0;
+  margin-left: calc(0px - 15px);
+  width: calc(100% + 15px);
+}
+.root > :global(.__wab_flex-container) > *,
+.root > :global(.__wab_flex-container) > :global(.__wab_slot) > *,
+.root > :global(.__wab_flex-container) > picture > img,
+.root > :global(.__wab_flex-container) > :global(.__wab_slot) > picture > img {
+  margin-left: 15px;
+}
+.svg__h2W3H {
+  object-fit: cover;
+  max-width: 100%;
+  color: var(--token-lQGUVf47CErW);
+  width: 1em;
+  flex-shrink: 0;
+  height: 1em;
+}
+.svg__mavMs {
+  position: relative;
+  object-fit: cover;
+  max-width: 100%;
+  color: var(--token-lQGUVf47CErW);
+  align-self: flex-start;
+  width: 1em;
+  flex-shrink: 0;
+  height: 1em;
+}
+.svg__hZaIf {
+  position: relative;
+  object-fit: cover;
+  max-width: 100%;
+  color: var(--token-lQGUVf47CErW);
+  width: 1em;
+  flex-shrink: 0;
+  height: 1em;
+}
