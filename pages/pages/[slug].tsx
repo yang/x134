@@ -6,8 +6,12 @@ import GlobalContextsProvider from "../../components/plasmic/copy_of_seodapop_ma
 import { ScreenVariantProvider } from "../../components/plasmic/copy_of_seodapop_main_website/PlasmicGlobalVariant__Screen";
 import { PlasmicPagesslug } from "../../components/plasmic/copy_of_seodapop_main_website/PlasmicPagesslug";
 import { useRouter } from "next/router";
+// import { extractPlasmicQueryData } from "@plasmicapp/prepass";
+// import { PlasmicQueryDataProvider } from "@plasmicapp/query";
+import { extractPlasmicQueryData } from "@plasmicapp/react-web/lib/prepass";
+import { PlasmicQueryDataProvider } from "@plasmicapp/react-web/lib/query";
 
-function Pagesslug() {
+function Pagesslug({ queryCache }: { queryCache?: any }) {
   // Use PlasmicPagesslug to render this component as it was
   // designed in Plasmic, by activating the appropriate variants,
   // attaching the appropriate event handlers, etc.  You
@@ -24,16 +28,32 @@ function Pagesslug() {
   // variant context providers. These wrappers may be moved to
   // Next.js Custom App component
   // (https://nextjs.org/docs/advanced-features/custom-app).
+  const query = { slug: "ada-updates" };
+  // const query = useRouter()?.query;
+  console.log(query, queryCache);
   return (
-    <GlobalContextsProvider>
-      <ph.PageParamsProvider
-        params={useRouter()?.query}
-        query={useRouter()?.query}
-      >
-        <PlasmicPagesslug />
-      </ph.PageParamsProvider>
-    </GlobalContextsProvider>
+    <PlasmicQueryDataProvider prefetchedCache={queryCache}>
+      <GlobalContextsProvider>
+        <ph.PageParamsProvider params={query} query={query}>
+          <PlasmicPagesslug />
+        </ph.PageParamsProvider>
+      </GlobalContextsProvider>
+    </PlasmicQueryDataProvider>
   );
+}
+
+export async function getStaticProps() {
+  const queryCache = await extractPlasmicQueryData(<Pagesslug />);
+  return {
+    props: { queryCache },
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
 }
 
 export default Pagesslug;

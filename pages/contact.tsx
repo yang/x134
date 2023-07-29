@@ -30,7 +30,7 @@ function ContactUs() {
         params={useRouter()?.query}
         query={useRouter()?.query}
       >
-        <PlasmicContactUs />
+        {/*<PlasmicContactUs />*/}
       </ph.PageParamsProvider>
     </GlobalContextsProvider>
   );
